@@ -10,8 +10,8 @@ jobs:
   load_env:
     runs-on: ubuntu-latest
     outputs:
-        SERVICE_NAME: "demo"
-        SERVICE_HOOK_NAME: "demo-hook"
+      SERVICE_NAME: ${{ steps.generate-output.outputs.SERVICE_NAME }}
+      SERVICE_HOOK_NAME: ${{ steps.generate-output.outputs.SERVICE_NAME }}
     steps:
       - name: Load Env variable
         run: |
@@ -23,7 +23,7 @@ jobs:
           echo "NAME=$NAME";
           echo "NAME_HOOK=$NAME_HOOK"
       
-      - name: set output
+      - name: generate-output
         run: |
           echo "SERVICE_NAME=$NAME" >> $GITHUB_OUTPUT
           echo "SERVICE_HOOK_NAME=$NAME_HOOK" >> $GITHUB_OUTPUT
