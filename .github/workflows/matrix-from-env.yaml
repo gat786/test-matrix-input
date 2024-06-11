@@ -19,3 +19,24 @@ jobs:
         run: |
           echo "NAME=$NAME";
           echo "NAME_HOOK=$NAME_HOOK"
+      
+      - name: set output
+        run: |
+          echo "SERVICE_NAME=$NAME" >> $GITHUB_OUTPUT
+          echo "SERVICE_HOOK_NAME=$NAME_HOOK" >> $GITHUB_OUTPUT
+
+  read_output:
+    needs: load_env
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        k8s_sa_name:
+          - "${{ needs.load_env.outputs.SERVICE_NAME }}"
+          - "${{ needs.load_env.outputs.SERVICE_HOOK_NAME }}"
+    steps:
+      - name: print sa
+        run: |
+          echo ${{ matrix.k8s_sa_name }}
+
+        
+        
