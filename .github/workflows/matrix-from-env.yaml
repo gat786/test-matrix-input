@@ -24,6 +24,7 @@ jobs:
           echo "NAME_HOOK=$NAME_HOOK"
       
       - name: generate-output
+        id: generate-output
         run: |
           echo "SERVICE_NAME=$NAME" >> $GITHUB_OUTPUT
           echo "SERVICE_HOOK_NAME=$NAME_HOOK" >> $GITHUB_OUTPUT
