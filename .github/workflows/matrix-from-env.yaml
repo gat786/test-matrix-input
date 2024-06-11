@@ -13,6 +13,8 @@ jobs:
       SERVICE_NAME: ${{ steps.generate-output.outputs.SERVICE_NAME }}
       SERVICE_HOOK_NAME: ${{ steps.generate-output.outputs.SERVICE_HOOK_NAME }}
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: Load Env variable
         run: |
           cat .env >> $GITHUB_ENV
