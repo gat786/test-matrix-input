@@ -1,0 +1,21 @@
+name: Matrix from env
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  load_env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Load Env variable
+        run: |
+          echo "NAME=service" >> $GITHUB_ENV
+          echo "NAME_HOOK=service-hook" >> $GITHUB_ENV
+      
+      - name: Read Env Variable
+        run: |
+          echo "NAME=$NAME";
+          echo "NAME_HOOK=$NAME_HOOK"
