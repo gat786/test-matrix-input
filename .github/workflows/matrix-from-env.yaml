@@ -9,6 +9,9 @@ on:
 jobs:
   load_env:
     runs-on: ubuntu-latest
+    outputs:
+        SERVICE_NAME: "demo"
+        SERVICE_HOOK_NAME: "demo-hook"
     steps:
       - name: Load Env variable
         run: |
@@ -34,7 +37,7 @@ jobs:
           - "${{ needs.load_env.outputs.SERVICE_NAME }}"
           - "${{ needs.load_env.outputs.SERVICE_HOOK_NAME }}"
     steps:
-      - name: print sa
+      - name: print sa for ${{ matrix.k8s_sa_name }}
         run: |
           echo ${{ matrix.k8s_sa_name }}
 
